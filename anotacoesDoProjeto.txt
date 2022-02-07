@@ -68,3 +68,16 @@ Por exemplo, na classe de configuração TestConfig, foi implementado a classe C
 No caso, foi feito a injeçã de dependência da interface UserRepository, usando @Autowired, e após, no método run, intanciado dois usuários, com o construtor.
 Após, foi salvo no banco de dados com o método saveAll, passando uma lista de arrays, com o método Arrays.asList(user1, user2);
 
+-----------------------------------------------------------------------------
+Criado um novo pacote de serviços, para fazer que a camada de controller, converse com a de serviço, e a de serviço converse com a camada repository.
+Apenas um padrão de projeto, para não deixar a camada de controller muito carregada, deixando apenas para fazer as chamadas HTTP.
+Qualquer outro tipo de modelo de negócio, poderá ser feito na camada services.
+
+Desta forma, no UserController foi injetado a dependência do UserService com @Autowired.
+
+Foi criado o método para buscar todos no UserService, e também um método para buscar pelo número do ID (usando o Optional)
+
+Na classe UserController: Nesse ultimo caso, lembrar de usar as {} e a anotação @PathVariable
+
+---------------------------------------------------------------------------------
+
