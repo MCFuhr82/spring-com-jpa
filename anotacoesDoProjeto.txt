@@ -40,3 +40,17 @@ public ResponseEntity<User> findAll() {
 	return ResponsiEntity.ok().body(user);
 }
 
+----------------------------------------------------------------------------
+Para trabalhar com o banco de dados em memória H2, criar um arquivo, na pasta resources, com o nome application-test.properties
+Após, colocar as propriedades.
+
+Também, informar no arquivo application.properties que o profile ativo é o test. (spring.profiles.active=test)
+
+----------------------------------------------------------------------------
+Informar nas entidades criadas (no caso, até agora somente a classe User) a anotação para o JPA  converter os objetos para o modelo relacional. (ORM)
+
+1 - Annotation em cima do nome da classe - @Entity
+2 - lembrar de fazer a anotação @Id, para indicar qual atributo será a chave primária
+3 - Se for um tipo númerico, como um id, da pra usar a anotação @GeneratedValue para autoincrementar, usando o parametro strategy
+
+
