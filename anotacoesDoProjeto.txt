@@ -53,4 +53,18 @@ Informar nas entidades criadas (no caso, até agora somente a classe User) a ano
 2 - lembrar de fazer a anotação @Id, para indicar qual atributo será a chave primária
 3 - Se for um tipo númerico, como um id, da pra usar a anotação @GeneratedValue para autoincrementar, usando o parametro strategy
 
+-----------------------------------------------------------------------------
+Criado uma classe de configuração, para configurar parametros do bando de dados H2, no modelo de teste.
+Quando informado no @Profile("test"), quer dizer que essa classe só vai ser usada caso esteja rodando no modo teste, no application.properties.
+
+-----------------------------------------------------------------------------
+Criado a interface UserRepository. É uma interface que extende JpaRepository.
+É a última camada, que salvará os dados no banco de dados.
+Tem que informar o objeto e o tipo <User, Long>, no exemplo de usuários.
+A JpaRepository tem vários métodos que serão usados.
+
+Por exemplo, na classe de configuração TestConfig, foi implementado a classe CommandLineRunner.
+É uma forma de, quando iniciar a aplicação, essa classe será iniciada, rodando o código que estiver no método void run.
+No caso, foi feito a injeçã de dependência da interface UserRepository, usando @Autowired, e após, no método run, intanciado dois usuários, com o construtor.
+Após, foi salvo no banco de dados com o método saveAll, passando uma lista de arrays, com o método Arrays.asList(user1, user2);
 
