@@ -1,0 +1,42 @@
+Resource (Controller) - recurso web correspondente a entidade {...}. 
+Recurso para fazer um endpoint para recuperar os {...} cadastrados ou recuperar pelo id.
+
+Sempre que for criar uma entidade Java, criar sempre nessa ordem:
+1 - Basic attributes
+2 - Associations (instantiate collections)
+3 - Constructors
+4 - Getter & Setters (collections: only get)
+5 - HashCode & equals
+6 - Serializable
+
+Depois de criar a entidade, criar um novo pacote chamado controllers.
+Após, criar um classe com o mesmo nome da classe entities, com o nome Controller do lado, por exemplo, UserController.
+Essa classe criará um recurso web para a entidade {...}
+
+O padrão a ser seguido será o seguinte:
+A camada de recurso (resource ou controllers, que se comunicará com o frontend):
+APPLICATION ---> RESOURCE LAYER (rest controllers) ----> SERVICE LAYER ----> DATA ACCESS LAYER (data repositories).
+
+1 - Uma camada de recurso, que será os controladores REST, que se comunicarão com a camada de serviços.
+2 - A camada de serviços, por sua vez, se comunicarão com a camada de acesso a dados, que serão os data repositories.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Ao criar a classe, por exemplo, UserController, tem que fazer a anotação @RestController e 
+@RequestMapping, indicando o caminho, por exemplo @RequestMapping(value = "/usuarios").
+
+Pode ser criados vários metodos HTTP, um endpoint, para retornar, criar, salvar, atualizar. Por exemplo, o findAll, que buscará todos os usuarios.
+O tipo de retorno, é um ResponseEntity, que é um tipo específico do spring para retonar respostas de requisições web.
+É um tipo que usar o Generics.
+E o return será o ResponseEntity.
+	ok() // para retornar a resposta com sucesso no HTTP
+	.body(user) // para retonar o corpo da resposta, passando o user como parametro
+
+Ficará assim, usando um usuário mockado como exemplo (criado na mão, com o construtor, para título de exemplo):
+
+@GetMapping // para dizer que é o método GET do HTTP
+public ResponseEntity<User> findAll() {
+	User user = new User(1L, "Marcelo", "marcelofuhr@gmail.com", "45991011615", "123456")
+	return ResponsiEntity.ok().body(user);
+}
+
