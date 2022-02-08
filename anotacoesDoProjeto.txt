@@ -137,3 +137,12 @@ Após, chamar novamente o ProductRepository.saveAll.
 Lembrar de colocar @JsonIgnore para não cair no loop infinito em uma das collections
 
 -------------------------------------------------------------------------------------------
+Criado uma classe auxiliar de Item e Pedido(OrderItemPK), porque na associação ManytoMany entre itens e pedidos, terá uma classe(OrderItem) com atributos extras.
+Nessa classe não tem chave primária, e não se pode ter chave primária composta.
+Por isso que foi criado uma classe auxiliar(OrderItemPK), que terá refernecia para as outras duas classes.
+
+A classe auxiliar foi criado no pacote entites.pk. Toda vez que precisar uma classe com chave composta, será criado nesse pacote.
+
+No construtor, para pegar as duas chaves primarias, foi adicionado a seguinte linha:
+- id.setOrder(order);
+- id.setProduct(product);
