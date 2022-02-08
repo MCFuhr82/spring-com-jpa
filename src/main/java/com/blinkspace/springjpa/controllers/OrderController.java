@@ -1,9 +1,7 @@
 package com.blinkspace.springjpa.controllers;
 
 import com.blinkspace.springjpa.entities.Order;
-import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.services.OrderService;
-import com.blinkspace.springjpa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

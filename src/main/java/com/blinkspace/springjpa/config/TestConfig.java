@@ -1,8 +1,10 @@
 package com.blinkspace.springjpa.config;
 
+import com.blinkspace.springjpa.entities.Category;
 import com.blinkspace.springjpa.entities.Order;
 import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.entities.enums.OrderStatus;
+import com.blinkspace.springjpa.repositories.CategoryRepository;
 import com.blinkspace.springjpa.repositories.OrderRepository;
 import com.blinkspace.springjpa.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,23 @@ import java.util.Arrays;
 @Profile("test") //anotação para rodar somente quando estivermos trabalhando com o modelo teste. Quando no arquivo application.properties estiver 'spring.profiles.active=test'
 public class TestConfig implements CommandLineRunner { //CommandLineRunner indica que quando iniciar a aplicação, essa classe será rodada, através do método run
 
-    @Autowired //injecação de dependência da classe userRepository
+    @Autowired //injecação de dependência da classe UserRepository
     private UserRepository userRepository;
 
     @Autowired //injeção da classe OrderRepository, para fazer seed de alguns pedidos
     private OrderRepository orderRepository;
 
+    @Autowired //injecação de dependência da classe CategoryRepository
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
 
         User user1 = new User(null, "Marcelo Fuhr", "marcelinhofuhr@gmail.com", "45991011614", "123456");
         User user2 = new User(null, "Dayane Oenning", "dayoenning@gmail.com", "45991061985", "456789");

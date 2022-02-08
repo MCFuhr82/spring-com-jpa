@@ -1,7 +1,6 @@
 package com.blinkspace.springjpa.services;
 
 import com.blinkspace.springjpa.entities.Order;
-import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
