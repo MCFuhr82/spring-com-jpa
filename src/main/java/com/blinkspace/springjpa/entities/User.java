@@ -1,5 +1,6 @@
 package com.blinkspace.springjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class User implements Serializable {
 
     @Getter // como é uma coleção, usa somente o Getter e não o Setter
     @OneToMany(mappedBy = "client") //tem que colocar o nome do atributo que esta do outro lado da associação
+    @JsonIgnore //essa anotação é muito importante, pois como tem associação nas duas pontas, usando o @JsonIgnore, não fica naquele loop infinito, do user chamando order e vice versa.
     private List<Order> orders = new ArrayList<>(); // como é uma coleção, já foi instanciado no atributo.
 
     public User(Integer id, String name, String email, String phone, String password) {

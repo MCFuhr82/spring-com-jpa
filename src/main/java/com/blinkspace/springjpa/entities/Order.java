@@ -1,5 +1,6 @@
 package com.blinkspace.springjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -20,6 +21,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") //anotação para formtar a data
     private Instant moment;
 
     @ManyToOne //anotação para mapear a CHAVE ESTRANGEIRA de muitos para um. Nesse caso, de MUITOS ORDER para UM USER.

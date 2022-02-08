@@ -89,4 +89,15 @@ Adicionado @Table nas entidades, para setar um novo nome para a tabela
 Anotação ManyToOne para mapear a chave estrangeira e o JoinColumn para setar o nome da coluna.
 Na outra parte, OneToMany usando o mappedBy, dizendo qual atributo esta sendo mapeado para
 
+----------------------------------------------------------------------------------
+Criado a classe OrderService, OrderRepository, e OrderController.
+Injetado dependencia no testConfig para o orderRepository.
+Instanciado pedidos.
+
+Uma anotação importante: quando for fizer associação dos dois lados, ManyToOne e OneToMany, usar anotação @JsonIgnore.
+Com isso, não fica num loop infinito, um objeto chamando o outro.
+
+Quando carrega um objeto do lado de muitos para um, automaticamente o JPA carrega o objeto que esta do lado do um.
+Mas isso não acontece do lado do um para muitos. É o chamado LAZY LOADING. Isso para não estourar a memória, o tráfego do computador.
+
 
