@@ -1,6 +1,7 @@
 package com.blinkspace.springjpa.entities;
 
 import com.blinkspace.springjpa.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId //anotação para uma chave primária com mais de um atributo
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK(); //sempre que criar uma classe auxiliar, com id composto, sempre instanciar direto no atributo, senao da um NullPointerException
 
     private Integer quantity;
     private Double price;
@@ -30,6 +31,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore //como não tem o order como atributo, pode colocar direto no método getOrder, para não cair no loop infinito
     public Order getOrder() {
         return id.getOrder();
     }

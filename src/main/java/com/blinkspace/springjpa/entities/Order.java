@@ -8,7 +8,9 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,6 +34,9 @@ public class Order implements Serializable {
     @ManyToOne //anotação para mapear a CHAVE ESTRANGEIRA de muitos para um. Nesse caso, de MUITOS ORDER para UM USER.
     @JoinColumn(name = "client_id") // anotação para dizer qual nome da chave estrangeira que terá no banco de dados
     private User client;
+
+    @OneToMany(mappedBy = "id.order") //apesar de associar a OrderItem, será mapeado pelo id.order, da classe OrderItemPK
+    private Set<OrderItem> items = new HashSet<>(); //como é uma collection, já instancia direto no atributo
 
     //criado um construtor para resolver o problema da instanciação do Order no testConfig
     public Order(Integer id, Instant parse, OrderStatus orderStatus, User user) {

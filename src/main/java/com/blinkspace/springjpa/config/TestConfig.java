@@ -1,14 +1,8 @@
 package com.blinkspace.springjpa.config;
 
-import com.blinkspace.springjpa.entities.Category;
-import com.blinkspace.springjpa.entities.Order;
-import com.blinkspace.springjpa.entities.Product;
-import com.blinkspace.springjpa.entities.User;
+import com.blinkspace.springjpa.entities.*;
 import com.blinkspace.springjpa.entities.enums.OrderStatus;
-import com.blinkspace.springjpa.repositories.CategoryRepository;
-import com.blinkspace.springjpa.repositories.OrderRepository;
-import com.blinkspace.springjpa.repositories.ProductRepository;
-import com.blinkspace.springjpa.repositories.UserRepository;
+import com.blinkspace.springjpa.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +27,9 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -70,6 +67,14 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
 
         userRepository.saveAll(Arrays.asList(user1, user2)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
         orderRepository.saveAll(Arrays.asList(order1, order2, order3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
+
+        OrderItem oi1 = new OrderItem(order1, product1, 2, product1.getPrice());
+        OrderItem oi2 = new OrderItem(order2, product5, 1, product5.getPrice());
+        OrderItem oi3 = new OrderItem(order3, product2, 3, product2.getPrice());
+        OrderItem oi4 = new OrderItem(order3, product4, 5, product4.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
     }
 
 }

@@ -146,3 +146,7 @@ A classe auxiliar foi criado no pacote entites.pk. Toda vez que precisar uma cla
 No construtor, para pegar as duas chaves primarias, foi adicionado a seguinte linha:
 - id.setOrder(order);
 - id.setProduct(product);
+
+Adicionado na classe OrderItem, no método getOrder, a annotation @JsonIgnore
+Povoado o banco de dados no TestConfig com o orderItemRepository.
+
