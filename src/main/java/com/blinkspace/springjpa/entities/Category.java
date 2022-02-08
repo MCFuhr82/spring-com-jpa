@@ -5,7 +5,9 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,6 +23,14 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @Transient
+    private Set<Product> products = new HashSet<>();
+
+    public Category(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {

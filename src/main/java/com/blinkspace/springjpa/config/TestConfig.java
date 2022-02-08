@@ -2,10 +2,12 @@ package com.blinkspace.springjpa.config;
 
 import com.blinkspace.springjpa.entities.Category;
 import com.blinkspace.springjpa.entities.Order;
+import com.blinkspace.springjpa.entities.Product;
 import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.entities.enums.OrderStatus;
 import com.blinkspace.springjpa.repositories.CategoryRepository;
 import com.blinkspace.springjpa.repositories.OrderRepository;
+import com.blinkspace.springjpa.repositories.ProductRepository;
 import com.blinkspace.springjpa.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
     @Autowired //injecação de dependência da classe CategoryRepository
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -35,7 +40,15 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
         Category category2 = new Category(null, "Books");
         Category category3 = new Category(null, "Computers");
 
+        Product product1 = new Product(null, "O Senhor dos Aneis", "A história narra o conflito contra o mal que se alastra pela Terra-média, através da luta de várias raças", 45.99, "");
+        Product product2 = new Product(null, "SmartTv LG 60", "TV OLED última geração de 60 polegadas", 3549.99, "");
+        Product product3 = new Product(null, "PC Gamer", "PC configuração inicial para jogadores amadores", 5950.00, "");
+        Product product4 = new Product(null, "Biblia Sagrada", "Biblia em capa dura com gravuras em alguns trechos", 52.00, "");
+        Product product5 = new Product(null, "IPAD Pro", "Lançamento com recursos inovadores e tela 8k", 8565.99, "");
+        Product product6 = new Product(null, "MacBook Pro", "Máquina com interface gráfica para quem trabalha com imagens", 16950.00, "");
+
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6)); //
 
         User user1 = new User(null, "Marcelo Fuhr", "marcelinhofuhr@gmail.com", "45991011614", "123456");
         User user2 = new User(null, "Dayane Oenning", "dayoenning@gmail.com", "45991061985", "456789");

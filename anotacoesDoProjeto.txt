@@ -108,3 +108,8 @@ o OrderStatus através do código int.
 
 Feito isso, foi criado um atributo Integer orderStatus e um Construtor na Classe Order.
 Também foi criado manualmente o Getter e Setter para esse atributo, com várias nuances.
+--------------------------------------------------------------------------------------
+
+Criado entidade Category
+
+------------------------------------------------------------------------------------
