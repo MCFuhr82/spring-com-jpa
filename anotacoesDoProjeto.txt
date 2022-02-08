@@ -113,3 +113,27 @@ Também foi criado manualmente o Getter e Setter para esse atributo, com várias
 Criado entidade Category
 
 ------------------------------------------------------------------------------------
+Criado entidade Product.
+Como o objeto product se relaciona com a objeto category, foi feito associação nas duas classes.
+Lembrar que como o atributo é uma collection, não inicia no construtor. Já faz diretamente na declaração do atributo,
+para que o mesmo inicie como um conjunto vazio.
+Para testar, foi usado a anotação @Transient em cima das collections. Apenas para o JPA não reconhecer, para rodar o programa normalmente.
+
+--------------------------------------------------------------------------------------
+
+Na associação ManyToMany entre produtos e categorias, na categoria produto foi feito a seguinte anotação:
+@JoinTable: significa qual será criado uma nova tabela, com junção de outras duas.
+O primeiro parametro foi o name, dizendo qual será o nome da tabela.
+Após, o parametro 'joinColumns = @JoinColumn' para setar qual o nome da coluna para a classe que estou trabalhando, no caso, a de produto.
+Por fim, o parametro 'inverseJoinColumns = @JoinColumn' para setar o nome da coluna da outra classe, que é a de categorias.
+
+Na outra classe, no exemplo category, tem que fazer a referencia para o mapeamento que foi feito, usando ManyToMany(mappedBy com o nome da collections)
+
+No TestConfig, foi relacionado cada produto com sua categoria. Pode ser feito de duas formas:
+Informando o produto.getCategories.add(), passando como parametro a categoria.
+Ou com o produto.setCategories(Set.of()) passando como parametro uma ou mais categoria.
+Após, chamar novamente o ProductRepository.saveAll.
+
+Lembrar de colocar @JsonIgnore para não cair no loop infinito em uma das collections
+
+-------------------------------------------------------------------------------------------

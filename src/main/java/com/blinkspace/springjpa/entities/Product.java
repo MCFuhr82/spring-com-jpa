@@ -27,7 +27,10 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient //impede que o JPA interprete. Apenas uma anotação transitória
+    //@Transient //impede que o JPA interprete. Apenas uma anotação transitória
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id")) //qual será o nome da tabela e quais serão as chaves estrangeiras que irão associar a tablea de produtos com a tabela de categorias
     private Set<Category> categories = new HashSet<>(); //Associação entre produtos e categorias. Foi usado Set ao invés de List. Para garantir que o mesmo produto não posso ter uma categoria mais de uma vez.
     // Também já foi instanciado, para não valer nulo. O conjunto set já inicia vazio.
 

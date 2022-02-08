@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Set;
 
 @Configuration //anotação para dizer que é uma classe de configuração
 @Profile("test") //anotação para rodar somente quando estivermos trabalhando com o modelo teste. Quando no arquivo application.properties estiver 'spring.profiles.active=test'
@@ -48,6 +49,15 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
         Product product6 = new Product(null, "MacBook Pro", "Máquina com interface gráfica para quem trabalha com imagens", 16950.00, "");
 
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6)); //
+
+        product1.setCategories(Set.of(category2));
+        product2.getCategories().add(category1);
+        product3.setCategories(Set.of(category1, category3));
+        product4.getCategories().add(category2);
+        product5.getCategories().add(category1);
+        product6.setCategories(Set.of(category1, category3));
+
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6)); //
 
         User user1 = new User(null, "Marcelo Fuhr", "marcelinhofuhr@gmail.com", "45991011614", "123456");

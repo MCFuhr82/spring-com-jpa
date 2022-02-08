@@ -1,5 +1,6 @@
 package com.blinkspace.springjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -24,7 +25,9 @@ public class Category implements Serializable {
     private Integer id;
     private String name;
 
-    @Transient
+    //@Transient
+    @JsonIgnore //para não ficar no loop infinito
+    @ManyToMany(mappedBy = "categories") //tem que colocar o nome do atributo que esta do outro lado da associação
     private Set<Product> products = new HashSet<>();
 
     public Category(Integer id, String name) {
