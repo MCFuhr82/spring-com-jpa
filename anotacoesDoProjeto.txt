@@ -80,4 +80,13 @@ Foi criado o método para buscar todos no UserService, e também um método para
 Na classe UserController: Nesse ultimo caso, lembrar de usar as {} e a anotação @PathVariable
 
 ---------------------------------------------------------------------------------
+Criado classe Order. Neste momento deu um erro ao usar o @Data do Lombok, com a seguinte mensagem:
+Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
+Por isso, foi excluido @Data e aceitado a correção do IntelliJ. Mas tive que criar um construtor para rodar a instanciação do user, no test config.
+Também foi exluído a anotação @NoArgsConstructor, pois estava dando erro.
+
+Adicionado @Table nas entidades, para setar um novo nome para a tabela
+Anotação ManyToOne para mapear a chave estrangeira e o JoinColumn para setar o nome da coluna.
+Na outra parte, OneToMany usando o mappedBy, dizendo qual atributo esta sendo mapeado para
+
 

@@ -1,19 +1,23 @@
 package com.blinkspace.springjpa.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-@Data // @Data is a convenient shortcut annotation that bundles the features of @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor together.
-@NoArgsConstructor // @NoArgsConstructor will generate a constructor with no parameters.
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor // @AllArgsConstructor generates a constructor with 1 parameter for each field in your class.
 @Entity //anotação para converter o objeto do modelo de domínio para o modelo relacional
+@Table(name = "tb_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,4 +28,29 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @Getter // como é uma coleção, usa somente o Getter e não o Setter
+    @OneToMany(mappedBy = "client") //tem que colocar o nome do atributo que esta do outro lado da associação
+    private List<Order> orders = new ArrayList<>(); // como é uma coleção, já foi instanciado no atributo.
+
+    public User(Integer id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
