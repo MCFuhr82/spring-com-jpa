@@ -100,4 +100,11 @@ Com isso, não fica num loop infinito, um objeto chamando o outro.
 Quando carrega um objeto do lado de muitos para um, automaticamente o JPA carrega o objeto que esta do lado do um.
 Mas isso não acontece do lado do um para muitos. É o chamado LAZY LOADING. Isso para não estourar a memória, o tráfego do computador.
 
+-----------------------------------------------------------------------------------
+Na enum OrderStatus, foi criado vários 'retornos' possíveis.
+Porém, da forma como foi feito, teve que ser criado um atributo, um construtor private,
+um método para acessar o construtor, já que o mesmo é private e um método static para buscar]
+o OrderStatus através do código int.
 
+Feito isso, foi criado um atributo Integer orderStatus e um Construtor na Classe Order.
+Também foi criado manualmente o Getter e Setter para esse atributo, com várias nuances.
