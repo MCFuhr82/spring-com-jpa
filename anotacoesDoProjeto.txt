@@ -150,3 +150,13 @@ No construtor, para pegar as duas chaves primarias, foi adicionado a seguinte li
 Adicionado na classe OrderItem, no método getOrder, a annotation @JsonIgnore
 Povoado o banco de dados no TestConfig com o orderItemRepository.
 
+--------------------------------------------------------------------------------
+Associação OneToMany para o Product-OrderItem
+
+--------------------------------------------------------------
+Criado a classe Payment e a associação OneToOne com a classe OrderItem
+Adicionado anotation @MapsId na classe Payment, na associação.
+
+Na Classe Order, na associação com o Payment, adicionado na annotation @OneToOne o parametro cascade com a classe
+
+
