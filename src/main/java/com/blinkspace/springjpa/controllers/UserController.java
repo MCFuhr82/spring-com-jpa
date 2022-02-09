@@ -35,4 +35,10 @@ public class UserController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(user);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) { //para esse método, não tem retorno. Não retorna nenhum corpo(body)
+        userService.delete(id);
+        return ResponseEntity.noContent().build(); //no content quer dizer que não retorna corpo nenhum, e já retorna o código 204 do HTTP.
+    }
 }

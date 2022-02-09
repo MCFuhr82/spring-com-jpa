@@ -29,4 +29,9 @@ public class UserService {
     public User insert(User user) { //passando um usuário como argumento
         return repository.save(user); //o método save já retorna o usuário salvo
     }
+
+    // método para deletar um usuário na base de dados
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }

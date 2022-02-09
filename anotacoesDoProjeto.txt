@@ -176,4 +176,7 @@ Por isso, foi inserido a linha URI uri = ServletUriComponentsBuilder.fromCurrent
 No Postman, usar método POST. Na aba body, colocar o Json apropriado, selecionar opção raw e selecionar JSON.
 Na aba Headers, na opção KEY adicionar Content-Type e no value adicionar application/json
 
-
+--------------------------------------------------------------------------------
+Criado método para deletar usuario, passando um Id.
+Na classe UserController, usado annotation @DeleteMaping, usando um id como parametro.
+NoContent quer dizer que não retorna corpo(body), e a código de resposta é 204, informando deleção do usuário.
