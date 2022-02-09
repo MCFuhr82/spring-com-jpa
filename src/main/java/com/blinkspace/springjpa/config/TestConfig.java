@@ -65,7 +65,7 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
         // a data esta no formato da ISO8601. O 'Z' no final diz que esta no formato UTC de Greenwich
         Order order1 = new Order(null, Instant.parse("2022-01-30T20:02:33Z"), OrderStatus.PAID,user1);
         Order order2 = new Order(null, Instant.parse("2022-02-01T10:05:33Z"), OrderStatus.WAITING_PAYMENT ,user2);
-        Order order3 = new Order(null, Instant.parse("2022-02-01T10:10:45Z"), OrderStatus.DELIVERED,user1);
+        Order order3 = new Order(null, Instant.parse("2022-02-01T10:10:45Z"), OrderStatus.WAITING_PAYMENT,user1);
 
         userRepository.saveAll(Arrays.asList(user1, user2)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
         orderRepository.saveAll(Arrays.asList(order1, order2, order3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList

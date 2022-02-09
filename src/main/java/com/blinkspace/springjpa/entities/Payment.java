@@ -1,5 +1,6 @@
 package com.blinkspace.springjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class Payment implements Serializable {
 
     @OneToOne //associação de um para um com a classe Order. A classe PAYMENT é a classe dependente.
     @MapsId
+    @JsonIgnore
     private Order order; //associação com Order. Um pagamento (Payment) tem um pedido (order)
 
     public Payment() {

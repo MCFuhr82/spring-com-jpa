@@ -159,4 +159,12 @@ Adicionado anotation @MapsId na classe Payment, na associação.
 
 Na Classe Order, na associação com o Payment, adicionado na annotation @OneToOne o parametro cascade com a classe
 
+--------------------------------------------------------------------------------
+Criado o método getSubTotal na classe OrderItem, retonar a quantidade * preço.
+Na Classe Order, criado o método getTotal, percorrendo a lista de OrderItem, buscando se tiver mais que um subTotal para o mesmo pedido, e somando os mesmos.
+
+Na classe Paymento, adiconado anotação @JsonIgnore no atributo order, para não cair no loob infinito.
+
+--------------------------------------------------------------------------------
+
 
