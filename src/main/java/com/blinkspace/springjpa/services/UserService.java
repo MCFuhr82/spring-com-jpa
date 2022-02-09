@@ -24,4 +24,9 @@ public class UserService {
         Optional<User> user = repository.findById(id);
         return user.get();
     }
+
+    // método para inserir um usuário na base de dados
+    public User insert(User user) { //passando um usuário como argumento
+        return repository.save(user); //o método save já retorna o usuário salvo
+    }
 }
