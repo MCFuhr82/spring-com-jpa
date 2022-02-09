@@ -2,8 +2,6 @@ package com.blinkspace.springjpa.entities.pk;
 
 import com.blinkspace.springjpa.entities.Order;
 import com.blinkspace.springjpa.entities.Product;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -11,8 +9,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Getter
-@Setter
+
 @Embeddable
 public class OrderItemPK implements Serializable { //essa classe, em especial, não terá construtor
     private static final long serialVersionUID = 1L;
@@ -24,6 +21,22 @@ public class OrderItemPK implements Serializable { //essa classe, em especial, n
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Override
     public boolean equals(Object o) {

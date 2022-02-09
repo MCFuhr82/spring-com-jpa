@@ -1,5 +1,6 @@
 package com.blinkspace.springjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -9,11 +10,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
@@ -34,7 +30,14 @@ public class Product implements Serializable {
     private Set<Category> categories = new HashSet<>(); //Associação entre produtos e categorias. Foi usado Set ao invés de List. Para garantir que o mesmo produto não posso ter uma categoria mais de uma vez.
     // Também já foi instanciado, para não valer nulo. O conjunto set já inicia vazio.
 
+    @OneToMany(mappedBy = "id.product") //apesar de associar a OrderItem, será mapeado pelo id.product, da classe OrderItemPK
+    private Set<OrderItem> items = new HashSet<>(); //Usado Set, pois não permitirá repetição
+
+    public Product() {
+    }
+
     public Product(Integer id, String name, String description, double price, String imgUrl) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,6 +45,58 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -55,4 +110,5 @@ public class Product implements Serializable {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

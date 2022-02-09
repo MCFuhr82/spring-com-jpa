@@ -48,12 +48,14 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner indic
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3)); //usando o JpaRepository para popular o banco de dados, com o método saveAll. Para salvar vários dados, foi usado Arrays.asList
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6)); //
 
-        product1.setCategories(Set.of(category2));
+        product1.getCategories().add(category2);
         product2.getCategories().add(category1);
-        product3.setCategories(Set.of(category1, category3));
+        product3.getCategories().add(category1);
+        product3.getCategories().add(category3);
         product4.getCategories().add(category2);
         product5.getCategories().add(category1);
-        product6.setCategories(Set.of(category1, category3));
+        product6.getCategories().add(category1);
+        product6.getCategories().add(category3);
 
         productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6)); //
 

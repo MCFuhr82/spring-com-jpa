@@ -2,6 +2,8 @@ package com.blinkspace.springjpa.entities;
 
 import com.blinkspace.springjpa.entities.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -25,6 +27,7 @@ public class OrderItem implements Serializable {
 
     //no construtor não consta o atributo OrderItemPK id. Será adicionado manualmente
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        super();
         id.setOrder(order); //adicionado manualmente
         id.setProduct(product); //adicionado manualmente
         this.quantity = quantity;
