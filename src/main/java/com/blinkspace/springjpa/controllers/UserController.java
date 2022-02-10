@@ -41,4 +41,10 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.noContent().build(); //no content quer dizer que não retorna corpo nenhum, e já retorna o código 204 do HTTP.
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
+        user = userService.update(id, user);
+        return ResponseEntity.ok().body(user);
+    }
 }

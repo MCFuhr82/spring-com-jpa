@@ -180,3 +180,9 @@ Na aba Headers, na opção KEY adicionar Content-Type e no value adicionar appli
 Criado método para deletar usuario, passando um Id.
 Na classe UserController, usado annotation @DeleteMaping, usando um id como parametro.
 NoContent quer dizer que não retorna corpo(body), e a código de resposta é 204, informando deleção do usuário.
+
+--------------------------------------------------------------------------------
+Criado método para atualizar usuário, passando um id.
+Como parametro, precisa usar um id e um objeto user. (@PathVariable Integer id, @RequestBody User user)
+
+
