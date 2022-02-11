@@ -214,6 +214,23 @@ Esse comando diz que, se não conseguir pegar, ele lançará a exceção criada.
 ----------------------------------------------------------------------------------------
 Criado um tratamento para o método delete.
 
+--------------------------------------------------------------------------------------
+Criado um tratamento para o método update.
+Para saber qual erro esta dando, basta imprimir o printStackTrace. Por exemplo:
+
+public User update(Integer id, User user) {
+        try {
+            User entity = repository.getOne(id);
+            updateData(entity, user);
+            return repository.save(entity);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+
+
 
 
 
