@@ -185,4 +185,33 @@ NoContent quer dizer que não retorna corpo(body), e a código de resposta é 20
 Criado método para atualizar usuário, passando um id.
 Como parametro, precisa usar um id e um objeto user. (@PathVariable Integer id, @RequestBody User user)
 
+--------------------------------------------------------------------------------
+Tratamento de exceção para quando buscar um funcionário pelo ID e não existir.
+Do jeito que está, retorna o código 500, e para este caso, o correto seria retornar o código 404.
+404 no HTTP é não encontrado.
+
+Criado uma nova classe, no pacote services.exceptions. Esse nova classe extende da RuntimeException.
+
+Criado uma classe, no pacote controller.exceptions, chamado de StardardError, com os atributos que retona no JSON do Postman.
+Por exemplo, retorna o seguinte JSON:
+
+{
+    "timestamp": "2022-02-11T13:51:04.888+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/users/7"
+}
+
+Assim, será criado uma classe com os atributos timestamp, status, error e path.
+
+Criado uma classe no pacote controller.exceptions, chamado de ResourceExceptionHandler.
+Nessa classe que vamos fazer o tratamento manual para o erro.
+
+Após, atualizado a classe UserService
+no retorno user.get(), agora ficou user.orElseThrow(() -> new ResourceNotFoundException(id));
+Esse comando diz que, se não conseguir pegar, ele lançará a exceção criada.
+
+
+
+
 

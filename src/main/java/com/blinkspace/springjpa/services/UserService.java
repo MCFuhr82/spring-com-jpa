@@ -2,6 +2,7 @@ package com.blinkspace.springjpa.services;
 
 import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.repositories.UserRepository;
+import com.blinkspace.springjpa.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserService {
     // método para retonar um usuário pelo número do Id
     public User findById(Integer id) {
         Optional<User> user = repository.findById(id);
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException(id)); //tirado .get() e passado essa nova função.
     }
 
     // método para inserir um usuário na base de dados
