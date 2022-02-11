@@ -284,6 +284,9 @@ git add .
 git commit -m ""
 git push heroku master
 
+Aplicação rodando.
+Abrir o app no Heroku, pegar o endereço e testar no Postman.
+
 
 
 
