@@ -236,6 +236,55 @@ Criado um app no Heroku. Ir em resources, add-on e escolher Heroku Postgres.
 Criado um arquivo application-dev.properties.
 No arquivo aplication.properties, mudar do perfil de test para dev
 
+---------------------------------------------------------------------------------------
+Criar um servidor remoto no postgres, e apontar para o Heroku.
+No app do Heroku, ir em settings, config var e reveals.
+Aparecerá um caminho como o seguinte:
+
+postgres://ettuifsynscusa:852852dcacf46538f349063652897d366f76a68791ef9ae05be23e32a5de65b5@ff2-36-896-68-90.compute-1.amazonaws.com:5432/a1masd33865gv8
+
+user: ettuifsynscusa
+password: 852852dcacf46538f349063652897d366f76a68791ef9ae05be23e32a5de65b5
+server: ff2-36-896-68-90.compute-1.amazonaws.com
+port: 5432
+database: a1masd33865gv8
+
+Depois ir no PgAdmin, Server, create Server.
+No nome do servidor, pode ser qualquer um.
+Na aba Connection:
+Host name/adress: são os dados do server, por exemplo, ff2-36-896-68-90.compute-1.amazonaws.com
+Port: 5432
+Maintenance: são os dados da database, por exemplo, a1masd33865gv8
+Username: são os dados do user, por exemplo,  ettuifsynscusa
+Password: são os dados do passoword, por exemplo, 852852dcacf46538f349063652897d366f76a68791ef9ae05be23e32a5de65b5
+
+Na aba Advanced, no campo DB restriction, adicionar os dados da database, no caso, a1masd33865gv8.
+Salvar.
+
+Após, será criado no Postgreso banco de dados.
+Clicar com o botão direito do mouse em cima dele, e ir em QueryTools.
+Buscar o arquivo criado (feito o backup no banco de dados do postgres local).
+
+------------------------------------------------------------------------------------------
+Criado arquivo application-prod.properties.
+No Heroku, em settings, config var, reveals, adicionar:
+JWT_EXPIRATION
+JWT_SECRET
+
+No arquivo application-prod.properties, os campos DATABASE_URL, JWT_EXPIRATION e JWT_SECRET buscará essas informações do Heroku.
+
+Trocar o perfil no application.properties de dev para prod
+
+Criado um arquivo system.properties na pasta raiz do projeto. Adicinado a seguinte linha:
+java.runtime.version=11
+Serve para informar para o Heroku que está sendo usado a versão 11 do java.
+
+Proximo passo é enviar para o Heroku.
+git add .
+git commit -m ""
+git push heroku master
+
+
 
 
 
