@@ -229,6 +229,12 @@ public User update(Integer id, User user) {
         }
     }
 
+-----------------------------------------------------------------------------------------
+Criado um app no Heroku. Ir em resources, add-on e escolher Heroku Postgres.
+
+-----------------------------------------------------------------------------------------
+Criado um arquivo application-dev.properties.
+No arquivo aplication.properties, mudar do perfil de test para dev
 
 
 
