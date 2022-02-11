@@ -2,8 +2,11 @@ package com.blinkspace.springjpa.services;
 
 import com.blinkspace.springjpa.entities.User;
 import com.blinkspace.springjpa.repositories.UserRepository;
+import com.blinkspace.springjpa.services.exceptions.DatabaseException;
 import com.blinkspace.springjpa.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +36,14 @@ public class UserService {
 
     // método para deletar um usuário na base de dados
     public void delete(Integer id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 
     public User update(Integer id, User user) {

@@ -211,6 +211,11 @@ Após, atualizado a classe UserService
 no retorno user.get(), agora ficou user.orElseThrow(() -> new ResourceNotFoundException(id));
 Esse comando diz que, se não conseguir pegar, ele lançará a exceção criada.
 
+----------------------------------------------------------------------------------------
+Criado um tratamento para o método delete.
+
+
+
 
 
 
